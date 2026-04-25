@@ -46,15 +46,15 @@ gpt-image-2 需要身份驗證。
 
 ---
 
-## 把以下內容整份丟給 Codex CLI
+## 把以下內容整份丟給 Codex
 
-> 開 Codex CLI，貼這整個檔案內容，Codex 會自動執行並提示貼 API Key。
+> 開 Codex Desktop（或 IDE / CLI），貼這整個檔案內容，Codex 會自動執行並提示貼 API Key。
 
 ---
 
 # 🤖 Codex 執行區（以下由 AI 自動完成）
 
-你是 Codex CLI 助手，請依序完成以下任務。
+你是 Codex 助手（Desktop / IDE / CLI 任一版本），請依序完成以下任務。
 
 ## 任務 1：環境檢查
 
@@ -234,7 +234,10 @@ if __name__ == "__main__":
 
 ## 任務 5：在全域 AGENTS.md 加觸發規則
 
-編輯 `~/.codex/AGENTS.md`（不存在就建），加入以下段落：
+> **Codex Desktop 用戶**：直接到「設定 → Personalization → Custom instructions」貼下方內容（會寫進 `~/.codex/AGENTS.md`，全域生效）。
+> **其他用戶**：編輯 `~/.codex/AGENTS.md`（不存在就建）。
+
+加入以下段落：
 
 ````markdown
 ## 生圖能力（gpt-image-2）

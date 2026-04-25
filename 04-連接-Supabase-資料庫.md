@@ -63,11 +63,16 @@
 
 ### 步驟四：把 Supabase 註冊為 Codex 的 MCP server
 
-**方法 A：用 codex CLI**
+> ✅ 三種 Codex 共用 `~/.codex/config.toml`。
 
-```bash
-codex mcp add supabase -- npx -y @supabase/mcp-server-supabase@latest --supabase-url <Project URL> --supabase-service-role-key <service_role_key>
-```
+**方法 A：Codex Desktop GUI（推薦）**
+
+1. Desktop → 設定 → **Integrations & MCP** → **Add server**
+2. 填：
+   - Name：`supabase`
+   - Command：`npx`
+   - Args（每行一個或用空白分隔，依介面）：`-y`、`@supabase/mcp-server-supabase@latest`、`--supabase-url`、`<Project URL>`、`--supabase-service-role-key`、`<service_role_key>`
+3. 儲存
 
 **方法 B：手動編輯 `~/.codex/config.toml`**
 
@@ -93,11 +98,17 @@ args = [
 > ```
 > 並在 args 裡用 `--supabase-service-role-key` 配對應的環境變數讀取（依 server 版本而定）。
 
+**方法 C：CLI**
+
+```bash
+codex mcp add supabase -- npx -y @supabase/mcp-server-supabase@latest --supabase-url <Project URL> --supabase-service-role-key <service_role_key>
+```
+
 ---
 
 ### 步驟五：重啟 Codex 並驗證
 
-> 🖐️ 完全關閉 Codex CLI 再開。
+> 🖐️ **Desktop**：完全結束 app 重開；**IDE**：Reload Window；**CLI**：`exit` 後重開。
 
 對 Codex 說「列出 Supabase 中有哪些資料表」（新專案應為空，能成功查詢就代表連接成功）。
 
@@ -119,17 +130,21 @@ Supabase 免費專案閒置一週會自動暫停。
 
 **Codex 沒有原生排程**，請用系統排程器：
 
-**Windows（工作排程器）**：建立每週執行一次的工作，跑：
-```bash
-codex exec "查 Supabase 中任意一個資料表的資料筆數，回報結果"
-```
+> ⚠️ **Codex Desktop / IDE 沒有 CLI 排程指令**。最簡單可行的做法：
 
-**macOS / Linux（cron）**：`crontab -e` 加：
+**方法 1：每週手動對 Codex 說一次「查一下 Supabase」**（最不容易出錯）
+
+**方法 2：直接打 Supabase 防暫停**（與 Codex 無關）—— 用系統排程跑一個 curl 查一下 anon key 就行：
+- Windows 工作排程器或 macOS/Linux cron 排每週一次：
+  ```bash
+  curl -s "https://<Project URL>/rest/v1/<任意table>?select=*&limit=1" \
+    -H "apikey: <anon key>" -H "Authorization: Bearer <anon key>" >/dev/null
+  ```
+
+**方法 3：CLI 用戶**（如果有裝）：
 ```
 0 9 * * 1 codex exec "查 Supabase 任意一個資料表的資料筆數" >> ~/.codex/supabase-keepalive.log 2>&1
 ```
-
-> 💡 或最簡單：每週手動對 Codex 說一次「查一下 Supabase」。
 
 ---
 
@@ -149,9 +164,9 @@ codex exec "查 Supabase 中任意一個資料表的資料筆數，回報結果"
 對 Codex 說：「Supabase 懶人包失敗，幫我檢查重新處理。」
 
 完全重置：
-```bash
-codex mcp remove supabase
-```
+- **Desktop**：設定 → Integrations & MCP → 刪 `supabase`
+- **手動**：編輯 `~/.codex/config.toml` 刪 `[mcp_servers.supabase]` 段
+- **CLI**：`codex mcp remove supabase`
 
 從步驟四重做。
 

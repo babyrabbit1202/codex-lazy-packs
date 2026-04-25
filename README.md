@@ -1,7 +1,26 @@
-# Codex 懶人包（OpenAI Codex CLI 版）
+# Codex 懶人包（OpenAI Codex 版）
 
-> Claude Code 懶人包的 OpenAI Codex CLI 平行版本。
-> 把每份 MD 檔丟給 Codex CLI，它會自動執行。
+> Claude Code 懶人包的 OpenAI Codex 平行版本。
+> 把每份 MD 檔丟給 Codex，它會自動執行。
+>
+> ✅ **適用三種 Codex**：**Codex Desktop app（macOS/Windows）**、**Codex IDE 擴充（VSCode / Cursor / JetBrains）**、**Codex CLI**。三者**共用同一份** `~/.codex/config.toml` 與 `AGENTS.md`，所以設定做一次就好。
+
+---
+
+## 我用的是哪一種？
+
+| 你的工具 | 怎麼裝 / 怎麼開 |
+|---|---|
+| **Codex Desktop app** | 從 [OpenAI 官網](https://developers.openai.com/codex/app)下載 macOS / Windows 安裝檔（**本懶人包預設場景**） |
+| Codex IDE 擴充 | VSCode / Cursor / Windsurf → Marketplace 搜尋「ChatGPT」（OpenAI 官方）；JetBrains 系列也有對應 |
+| Codex CLI | `npm install -g @openai/codex` |
+
+**MCP 與 AGENTS.md 設定的三條路（任選）**：
+1. **Desktop**：`設定 → Integrations & MCP` 介面新增 server；`設定 → Personalization` 編輯 AGENTS.md
+2. **IDE**：齒輪 → MCP settings → Open config.toml
+3. **CLI**：`codex mcp add <name> -- <command>`
+
+> 設定動了一邊，三邊都會吃到。本懶人包以 **Desktop app GUI** 為主寫，每個 MCP 章節都附「手動編輯 `~/.codex/config.toml`」的 TOML 範例供 IDE / CLI 用戶或 Desktop 進階使用者參考。
 
 ---
 
@@ -33,8 +52,8 @@
 
 ## 最低先備條件
 
-- [ ] OpenAI 帳號（ChatGPT Plus / Pro / Business 或 API 額度）
-- [ ] Node.js 18 以上（Codex CLI 透過 npm 安裝）
+- [ ] OpenAI 帳號（ChatGPT Plus / Pro / Business / Edu 訂閱，或 OpenAI API 額度）
+- [ ] **Codex Desktop app** 已安裝且能登入（macOS / Windows）；或 IDE 擴充 / CLI 任一
 - [ ] 電腦有網路連線
 
 ---

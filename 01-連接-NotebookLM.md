@@ -91,17 +91,21 @@ nlm doctor
 
 ### 步驟四：把 NotebookLM 註冊為 Codex 的 MCP server
 
-**方法 A：用 codex CLI（推薦）**
+> ✅ 三種 Codex 共用 `~/.codex/config.toml`，做一次三邊都吃到。任選一條路：
 
-```bash
-codex mcp add notebooklm -- nlm mcp
-```
+**方法 A：Codex Desktop GUI（最推薦）**
 
-> 註：`nlm setup add codex-cli` 在某些版本可能尚未支援，**用 `codex mcp add` 最保險**。
+1. 開 Codex Desktop → 設定 → **Integrations & MCP**
+2. 點 **Add server**（或類似的「新增」按鈕）
+3. 填：
+   - Name：`notebooklm`
+   - Command：`nlm`
+   - Args：`mcp`
+4. 儲存
 
 **方法 B：手動編輯 `~/.codex/config.toml`**
 
-在 `~/.codex/config.toml` 加入：
+> Desktop：設定 → Integrations & MCP → 「Open config.toml」也能直接打開這檔；IDE：齒輪 → MCP settings → Open config.toml；用記事本/編輯器開亦可。
 
 ```toml
 [mcp_servers.notebooklm]
@@ -109,7 +113,15 @@ command = "nlm"
 args = ["mcp"]
 ```
 
-> 💡 路徑：Windows 是 `C:\Users\<你>\.codex\config.toml`，macOS/Linux 是 `~/.codex/config.toml`。檔案不存在就新建。
+> 💡 路徑：Windows `C:\Users\<你>\.codex\config.toml`，macOS/Linux `~/.codex/config.toml`。檔案不存在就新建。
+>
+> ⚠️ **Section 名稱必須是 `mcp_servers`**（底線、複數）。寫成 `mcp-servers` 或 `mcpservers` Codex 會靜默忽略。
+
+**方法 C：CLI（只給有裝 CLI 的人）**
+
+```bash
+codex mcp add notebooklm -- nlm mcp
+```
 
 ---
 
@@ -133,11 +145,14 @@ Documents/
 
 ### 步驟六：重啟 Codex 並驗證
 
-> 🖐️ 完全關閉 Codex CLI 再重啟（`exit` 後重開）。
+> 🖐️ **Desktop**：完全結束 app（不只是關視窗），重新開啟。
+> **IDE 擴充**：Reload Window（VSCode：`Cmd/Ctrl+Shift+P` → Reload Window）。
+> **CLI**：`exit` 後重新 `codex`。
 
 驗證：
 1. 對 Codex 說「列出我的 NotebookLM 筆記本清單」
 2. 能成功列出（即使空的）→ 連接成功
+3. Desktop 用戶可在 Integrations & MCP 設定面板看 `notebooklm` 顯示為 ✅ 連線中
 
 ---
 
@@ -155,13 +170,15 @@ Documents/
 對 Codex 說：「NotebookLM 懶人包執行失敗，清除設定重跑。」
 
 復原：
+- **Desktop**：設定 → Integrations & MCP → 找到 `notebooklm` → 刪除/停用
+- **手動**：編輯 `~/.codex/config.toml` 移除 `[mcp_servers.notebooklm]` 段
+- **CLI**：`codex mcp remove notebooklm`
+
+清掉 nlm 本體：
 ```bash
-codex mcp remove notebooklm
 uv tool uninstall notebooklm-mcp-cli
 nlm logout 2>/dev/null
 ```
-
-或手動編輯 `~/.codex/config.toml` 移除 `[mcp_servers.notebooklm]` 段。
 
 ---
 
@@ -171,8 +188,9 @@ nlm logout 2>/dev/null
 |------|------|
 | `nlm: command not found` | 重開終端機；把 `uv tool dir --bin` 路徑加進 PATH |
 | 登入後 `nlm doctor` 顯示未認證 | 重跑 `nlm login` |
-| Codex 看不到 NotebookLM 工具 | 確認 `codex mcp list` 有 `notebooklm`，沒有就重做步驟四 |
-| `codex mcp` 指令找不到 | 確認 Codex CLI 版本夠新（`npm i -g @openai/codex@latest`） |
+| Codex 看不到 NotebookLM 工具 | Desktop：設定 → Integrations & MCP 看 `notebooklm` 是否啟用 / 連線；CLI：`codex mcp list` |
+| `codex mcp` 指令找不到 | 你沒裝 CLI，用 Desktop GUI 或手動編輯 config.toml |
+| 設定改了沒生效 | section 名稱要 `mcp_servers`（底線、複數），寫錯會被靜默忽略 |
 | Windows 上指令格式錯誤 | 用 PowerShell 或 Git Bash，別用 CMD |
 
 ---

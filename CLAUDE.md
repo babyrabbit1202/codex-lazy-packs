@@ -5,7 +5,14 @@
 這是公開發布到 GitHub 的 **Codex 懶人包**倉庫，對應 repo：
 **mathruffian-dot/codex-lazy-packs**
 
-本資料夾與 `claude-code-lazy-packs/` 是**平行版本**：同樣的教學流程，分別給 Claude Code 與 OpenAI Codex CLI 使用。
+本資料夾與 `claude-code-lazy-packs/` 是**平行版本**：同樣的教學流程，分別給 Claude Code 與 OpenAI Codex（**Desktop / IDE / CLI 三者通用**）使用。
+
+## 主要敘事視角
+
+懶人包以 **Codex Desktop app**（macOS / Windows）為主軸寫作，因為這是大多數老師的入口。但因為 Desktop / IDE 擴充 / CLI 三者**共用 `~/.codex/config.toml` 與 `AGENTS.md`**，每個 MCP 章節都同時提供三條路：
+1. Desktop GUI（Integrations & MCP 面板）
+2. 手動編輯 `~/.codex/config.toml`
+3. CLI 指令
 
 ## 雙倉同步原則
 

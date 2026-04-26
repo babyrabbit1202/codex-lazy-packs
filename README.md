@@ -65,7 +65,7 @@
 | 00 | [環境建置](00-環境建置.md) | 安裝 Codex CLI、Git、GitHub CLI、uv |
 | 01 | [連接 NotebookLM](01-連接-NotebookLM.md) | NotebookLM MCP（Codex 版） |
 | 02 | [連接 GitHub](02-連接-GitHub.md) | gh CLI + GitHub Pages |
-| 03 | [建立第二大腦 Obsidian](03-建立第二大腦-Obsidian.md) | Obsidian + mcpvault MCP |
+| 03 | [連接 Obsidian 第二大腦](03-建立第二大腦-Obsidian.md) | 先找 vault，再設定全域 AGENTS.md；跨專案讀寫可走資料夾授權或 MCPVault |
 | 03+ | [第二大腦設定指南](04-第二大腦設定指南.md) | 三層結構 + AGENTS.md + 模板 |
 | 04 | [連接 Supabase 資料庫](04-連接-Supabase-資料庫.md) | Supabase MCP（Codex 版） |
 | 04.5 | [連接 Firebase 資料庫](04.5-連接-Firebase-資料庫.md) | Firebase MCP（Codex 版） |

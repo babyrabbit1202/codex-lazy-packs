@@ -64,7 +64,7 @@
 |------|------|------|
 | 00 | [環境建置](00-環境建置.md) | 安裝 Codex CLI、Git、GitHub CLI、uv |
 | 01 | [連接 NotebookLM](01-連接-NotebookLM.md) | NotebookLM MCP（Codex 版） |
-| 01.5 | [建立第一個 Codex 專案工作區](01.5-建立第一個Codex專案工作區.md) | 專案資料夾、AGENTS.md、README、.gitignore、讀寫驗證、必裝 Skills / Plugins |
+| 01.5 | [初學者必裝 Skills 與 Plugins](01.5-Codex必裝Skills與Plugins.md) | GitHub、Browser Use、Office 文件、生圖、官方文件與 skill 工具檢查 |
 | 02 | [連接 GitHub](02-連接-GitHub.md) | GitHub CLI + 網頁端登入 + GitHub Pages 驗證 |
 | 03 | [連接 Obsidian 第二大腦](03-建立第二大腦-Obsidian.md) | 先找 vault，再設定全域 AGENTS.md；跨專案讀寫可走資料夾授權或 MCPVault |
 | 03+ | [第二大腦設定指南](04-第二大腦設定指南.md) | 三層結構 + AGENTS.md + 模板 |

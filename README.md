@@ -35,7 +35,7 @@
 | 專案指令檔 | `./CLAUDE.md` | `./AGENTS.md` |
 | 設定檔 | `~/.claude/settings.json`（JSON） | `~/.codex/config.toml`（TOML） |
 | MCP 安裝指令 | `claude mcp add ...` | `codex mcp add ...` |
-| Skill 機制 | 原生支援 | ❌ 沒有，用 prompt 模板或 shell 腳本取代 |
+| Skill 機制 | 原生支援 | ✅ Codex Desktop 支援 skills；CLI / 舊環境可用 prompt 模板或 shell 腳本備援 |
 | Slash command | 原生支援 | ❌ 沒有 |
 | 排程任務 | `mcp__scheduled-tasks__*` | ❌ 沒有，用系統 cron / Task Scheduler |
 
@@ -72,7 +72,7 @@
 | 05 | [安裝本地 AI Ollama](05-安裝本地AI-Ollama.md) | 本地模型，網頁工具用 |
 | 06 | [設定 Gemini 免費 API](06-設定Gemini免費API.md) | Gemini 免費 API，網頁工具用 |
 | 07 | [初始化班級工具工作模式](07-初始化班級工具工作模式.md) | AGENTS.md + 收工腳本 |
-| 08 | [把 gpt-image-2 裝進 Codex](08-安裝gpt-image-2生圖.md) | CLI 腳本 + AGENTS.md 提示 |
+| 08 | [用 Image Gen Skill 在 Codex 生圖](08-用Image Gen Skill在Codex生圖.md) | 新手用內建 Image Gen Skill；進階再用 API Key / CLI |
 | 09 | [用 chezmoi 同步 Codex 設定](09-用chezmoi同步Codex設定.md) | 跨電腦同步 `~/.codex/AGENTS.md` 與全域 skills |
 
 ---
@@ -81,7 +81,7 @@
 
 - **05 / 06**：跟 Codex / Claude 都無關，是「讓你做的網頁工具有 AI 能力」，兩邊通用。
 - **07 / 09 收工同步**：Codex 可用全域 skill + `~/.codex/AGENTS.md` 觸發詞；跨電腦同步時用 chezmoi 管理安全項目。
-- **08 生圖**：Claude 版用 SKILL.md，Codex 版改成純 Python 腳本，由 AGENTS.md 規則觸發。
+- **08 生圖**：Codex Desktop 新手優先使用內建 Image Gen Skill；API Key / CLI 腳本只作為進階大量產圖與自動化路線。
 - **04 第二大腦設定指南**：每週知識重整優先使用 Codex 自動化；CLI 排程只作為進階備援。
 
 ---
